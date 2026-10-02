@@ -4,23 +4,25 @@
 
 [Lawi Mwaura](https://github.com/Lawi-Mwaura) · [Public preview](https://catherine-six.vercel.app)
 
+**Private source repository:** [Lawi-Mwaura/catherine](https://github.com/Lawi-Mwaura/catherine). Access is limited to authorized collaborators; GitHub may show a 404 to public visitors.
+
+## Problem statement
+
+Readers and prospective collaborators need one place to find Catherine Gathoni's articles, podcast and speaking information, subscribe to updates and get in touch. The website supports those public journeys while keeping content administration separate.
+
+**Engineering challenge.** Public contact and content journeys need validation, while administrative records require privileged access checks. A notification failure should not erase a successfully saved submission.
+
 ![Catherine Gathoni public homepage](assets/catherine-gathoni.jpg)
 
 *Actual public preview captured on 1 October 2026. No dashboard records or customer submissions are shown.*
 
-## Problem statement
-
-Public contact and content journeys need validation, while administrative records require privileged access checks. A notification failure should not erase a successfully saved submission.
-
 ## Technologies used
 
-TypeScript · Next.js · React · Tailwind CSS · Supabase · Resend · Tiptap · Zod · Sentry
+TypeScript · Next.js · React · Tailwind CSS · Supabase Auth / PostgreSQL · Resend · Tiptap · React Hook Form · Zod · Sentry · Vercel Analytics · MDX · Lenis
 
 ## Engineering scope
 
 A Next.js website with editorial content, public contact and subscription journeys, and administrative workflows. The active application is separated from alternate deployment and design-handoff artifacts in the source repository.
-
-**Technologies:** TypeScript, Next.js, React, Tailwind CSS, Supabase, Resend, Tiptap, Zod, Sentry.
 
 ## System design
 
