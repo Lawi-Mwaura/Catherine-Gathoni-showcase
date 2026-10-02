@@ -26,32 +26,7 @@ A Next.js website with editorial content, public contact and subscription journe
 
 **Component architecture.** The boxes identify technologies and responsibilities; boundaries group the application runtime and managed backend. Relationships show dependencies and integration protocols, rather than a step-by-step processing flow.
 
-```mermaid
-C4Component
-    title Catherine Gathoni - application architecture
-    Container_Boundary(app, "Next.js application") {
-        Component(web, "Public and content interface", "React + Tailwind + Tiptap", "Content and public forms")
-        Component(api, "Server routes", "Next.js + TypeScript", "Validation and contact handling")
-        Component(admin, "Administration boundary", "Server-side access checks", "Privileged message operations")
-    }
-    System_Boundary(supabase, "Supabase backend platform") {
-        Container(auth, "Supabase Auth", "Managed authentication", "Identity checked by server code")
-        ContainerDb(db, "Supabase Database", "PostgreSQL", "Application and contact records")
-    }
-    System_Ext(email, "Resend", "Notification delivery")
-    Rel(web, api, "Calls", "HTTPS")
-    Rel(api, db, "Persists", "Supabase SDK")
-    Rel(api, email, "Notifies", "Resend API")
-    Rel(admin, auth, "Checks identity", "Supabase SDK")
-    Rel(admin, db, "Runs authorized queries", "Supabase SDK")
-    UpdateElementStyle(web, $bgColor="#24486B", $fontColor="#FFFFFF", $borderColor="#24486B")
-    UpdateElementStyle(api, $bgColor="#24745C", $fontColor="#FFFFFF", $borderColor="#24745C")
-    UpdateElementStyle(auth, $bgColor="#24745C", $fontColor="#FFFFFF", $borderColor="#24745C")
-    UpdateElementStyle(admin, $bgColor="#7653A1", $fontColor="#FFFFFF", $borderColor="#7653A1")
-    UpdateElementStyle(email, $bgColor="#7653A1", $fontColor="#FFFFFF", $borderColor="#7653A1")
-    UpdateElementStyle(db, $bgColor="#966F20", $fontColor="#FFFFFF", $borderColor="#966F20")
-    UpdateLayoutConfig($c4ShapeInRow="2", $c4BoundaryInRow="1")
-```
+![catherine-gathoni application components and labelled backend dependencies](assets/catherine-gathoni-architecture.svg)
 
 *Simplified responsibility map. Internal entities, credentials, and deployment details are omitted.*
 
