@@ -12,9 +12,13 @@ Readers and prospective collaborators need one place to find Catherine Gathoni's
 
 **Engineering challenge.** Public contact and content journeys need validation, while administrative records require privileged access checks. A notification failure should not erase a successfully saved submission.
 
-![Catherine Gathoni public homepage](assets/catherine-gathoni.jpg)
+<p align="center">
+  <a href="assets/catherine-gathoni.jpg"><img src="assets/catherine-gathoni.jpg" width="31%" alt="Catherine Gathoni: homepage" /></a>
+  <a href="assets/catherine-about.jpg"><img src="assets/catherine-about.jpg" width="31%" alt="Catherine Gathoni: About page" /></a>
+  <a href="assets/catherine-journal.jpg"><img src="assets/catherine-journal.jpg" width="31%" alt="Catherine Gathoni: Journal page excerpt" /></a>
+</p>
 
-*Actual public preview captured on 1 October 2026. No dashboard records or customer submissions are shown.*
+*Home captured on 1 October; About and Journal captured on 2 October 2026. These are public interface excerpts. Open a screenshot for detail.*
 
 ## Technologies used
 
