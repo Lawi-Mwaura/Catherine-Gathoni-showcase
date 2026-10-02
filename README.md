@@ -24,33 +24,33 @@ A Next.js website with editorial content, public contact and subscription journe
 
 ## System design
 
-**Reading the diagram:** blue = interface; green = processing; gold = data; purple = access, lifecycle, or operational control. Arrow labels describe the handoff between components.
+**Component architecture.** The boxes identify technologies and responsibilities; boundaries group the application runtime and managed backend. Relationships show dependencies and integration protocols, rather than a step-by-step processing flow.
 
 ```mermaid
-flowchart TB
-    PUBLIC[Public pages and forms]
-    ADMIN[Administrative interface]
-    subgraph SERVER[Next.js server · trust boundary]
-        VALIDATE[Normalize and validate input]
-        GATE[Server-side administrator check]
-        EMAIL[Notification service]
-        OPS[Operational error reporting]
-    end
-    DB[(Supabase persistence)]
-    PUBLIC -->|Untrusted submission| VALIDATE
-    VALIDATE -->|Validated content| DB
-    DB -->|After persistence| EMAIL
-    EMAIL -->|Separate delivery errors| OPS
-    ADMIN -->|Privileged request| GATE
-    GATE -->|Authorized bounded query| DB
-    classDef client fill:#EAF2FF,stroke:#3564A3,color:#142D4F,stroke-width:2px;
-    classDef service fill:#E7F5F0,stroke:#24745C,color:#123E32,stroke-width:2px;
-    classDef data fill:#FFF4D6,stroke:#966F20,color:#4D3810,stroke-width:2px;
-    classDef control fill:#F2ECFA,stroke:#7653A1,color:#382451,stroke-width:2px;
-    class PUBLIC,ADMIN client;
-    class VALIDATE,EMAIL service;
-    class DB data;
-    class GATE,OPS control;
+C4Component
+    title Catherine Gathoni - application architecture
+    Container_Boundary(app, "Next.js application") {
+        Component(web, "Public and content interface", "React + Tailwind + Tiptap", "Content and public forms")
+        Component(api, "Server routes", "Next.js + TypeScript", "Validation and contact handling")
+        Component(admin, "Administration boundary", "Server-side access checks", "Privileged message operations")
+    }
+    System_Boundary(supabase, "Supabase backend platform") {
+        Container(auth, "Supabase Auth", "Managed authentication", "Identity checked by server code")
+        ContainerDb(db, "Supabase Database", "PostgreSQL", "Application and contact records")
+    }
+    System_Ext(email, "Resend", "Notification delivery")
+    Rel(web, api, "Calls", "HTTPS")
+    Rel(api, db, "Persists", "Supabase SDK")
+    Rel(api, email, "Notifies", "Resend API")
+    Rel(admin, auth, "Checks identity", "Supabase SDK")
+    Rel(admin, db, "Runs authorized queries", "Supabase SDK")
+    UpdateElementStyle(web, $bgColor="#24486B", $fontColor="#FFFFFF", $borderColor="#24486B")
+    UpdateElementStyle(api, $bgColor="#24745C", $fontColor="#FFFFFF", $borderColor="#24745C")
+    UpdateElementStyle(auth, $bgColor="#24745C", $fontColor="#FFFFFF", $borderColor="#24745C")
+    UpdateElementStyle(admin, $bgColor="#7653A1", $fontColor="#FFFFFF", $borderColor="#7653A1")
+    UpdateElementStyle(email, $bgColor="#7653A1", $fontColor="#FFFFFF", $borderColor="#7653A1")
+    UpdateElementStyle(db, $bgColor="#966F20", $fontColor="#FFFFFF", $borderColor="#966F20")
+    UpdateLayoutConfig($c4ShapeInRow="2", $c4BoundaryInRow="1")
 ```
 
 *Simplified responsibility map. Internal entities, credentials, and deployment details are omitted.*
